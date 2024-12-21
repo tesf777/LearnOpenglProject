@@ -1,6 +1,6 @@
-set(TARGET_NAME hellorectangle)
+set(TARGET_NAME VBO)
 
-add_executable(${TARGET_NAME} helloworld.cpp)
+add_executable(${TARGET_NAME} VBO.cpp)
 
 target_link_libraries(${TARGET_NAME} glad glfw opengl32)
 

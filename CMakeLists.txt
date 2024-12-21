@@ -28,6 +28,7 @@ add_library(glfw STATIC IMPORTED)
 set_target_properties(glfw PROPERTIES IMPORTED_LOCATION ${OPENGL_DIR}/glfw/lib/glfw3.lib)
 
 # 添加子目录 (为每个示例项目提供独立的 CMakeLists.txt 文件)
-add_subdirectory(${SOURCE_DIR}/1_helloworld)
-add_subdirectory(${SOURCE_DIR}/2_hellorectangle)
+add_subdirectory(${SOURCE_DIR}/1_Helloworld)
+add_subdirectory(${SOURCE_DIR}/2_VBO)
+add_subdirectory(${SOURCE_DIR}/3_Uniform)
 
