@@ -44,9 +44,11 @@ int main()
   MyShader shaderProgram("shaders/vshader.vs", "shaders/fshader.fs");
 
   float vertices[] = {
-      -0.5f, -0.5f, 0.0f,
-      0.5f, -0.5f, 0.0f,
-      0.0f, 0.5f, 0.0f};
+      // 位置              // 颜色
+      0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f,  // 右下
+      -0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, // 左下
+      0.0f, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f    // 顶部
+  };
 
   unsigned int indices[] = {0, 1, 2};
 
@@ -58,9 +60,12 @@ int main()
   glGenBuffers(1, &VBO);
   glBindBuffer(GL_ARRAY_BUFFER, VBO);
   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
+  // 位置坐标
+  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *)0);
   glEnableVertexAttribArray(0);
+  // 颜色坐标
+  glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *)(3 * sizeof(float)));
+  glEnableVertexAttribArray(1);
 
   unsigned int EBO;
   glGenBuffers(1, &EBO);
@@ -77,7 +82,8 @@ int main()
 
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
-    shaderProgram.setFloat("ourColor", genGreen());
+    // shaderProgram.setVec4f("ourColor", glm::vec4(0.0f, genGreen(), 0.0f, 1.0f));
+    // shaderProgram.setFloat("offset", 0.5);
     shaderProgram.useShader();
     glBindVertexArray(VAO);
     glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);

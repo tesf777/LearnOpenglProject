@@ -46,6 +46,11 @@ void MyShader::setFloat(const std::string &name, float value) const
   glUniform1f(glGetUniformLocation(m_programID, name.c_str()), value);
 }
 
+void MyShader::setVec4f(const std::string &name, const glm::vec4 vec4)
+{
+  glUniform4fv(glGetUniformLocation(m_programID, name.c_str()), 1, glm::value_ptr(vec4));
+}
+
 std::string MyShader::readFile(const std::string &filePath)
 {
   std::ifstream shaderFile(filePath);

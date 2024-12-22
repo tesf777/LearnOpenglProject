@@ -18,6 +18,7 @@ set(OPENGL_DIR ${CMAKE_SOURCE_DIR}/opengl)
 include_directories(${INCLUDE_DIR})
 include_directories(${OPENGL_DIR}/glad/include)
 include_directories(${OPENGL_DIR}/glfw/include)
+include_directories(${OPENGL_DIR}/glm)
 
 # 构建 opengl/glad
 add_library(glad ${OPENGL_DIR}/glad/glad.c)
